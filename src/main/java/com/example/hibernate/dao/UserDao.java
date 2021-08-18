@@ -20,13 +20,22 @@ public class UserDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         UserEntity user = new UserEntity();
-		user.setEmail("lokesh@mail.com");
-		user.setFirstName("lokesh");
-		user.setLastName("gupta");
+		user.setEmail("pradeep@mail.com");
+		user.setFirstName("Pradeep");
+		user.setLastName("Rahul");
 		session.save(user);
         session.getTransaction().commit();
         session.close();
 		// HibernateUtil.shutdown();
+    }
+
+    public List<UserEntity> getAll() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<UserEntity> users = session.createQuery("from UserEntity", UserEntity.class).list();
+        session.getTransaction().commit();
+        session.close();
+        return users;
     }
 
 }

@@ -1,6 +1,9 @@
 package com.example.hibernate;
 
+import java.util.List;
+
 import com.example.hibernate.dao.UserDao;
+import com.example.hibernate.entities.UserEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +16,9 @@ public class HelloController {
     UserDao userDao;
 
     @GetMapping("/")
-    public String index() {
-        userDao.save();
-        return "Greetings from Spring Boot";
+    public List<UserEntity>index() {
+        // userDao.save();
+        return userDao.getAll();
+        // return "Greetings from Spring Boot";
     }
 }
