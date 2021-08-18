@@ -7,14 +7,17 @@ import com.example.hibernate.hibernateConnection.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserDao {
-
+   
+    @Autowired
+    private SessionFactory sessionFactory;
     
     public void save() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         UserEntity user = new UserEntity();
 		user.setEmail("lokesh@mail.com");
@@ -23,7 +26,7 @@ public class UserDao {
 		session.save(user);
         session.getTransaction().commit();
         session.close();
-		HibernateUtil.shutdown();
+		// HibernateUtil.shutdown();
     }
 
 }

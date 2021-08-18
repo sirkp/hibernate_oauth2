@@ -4,17 +4,18 @@ import java.io.File;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Bean;
 
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
+@org.springframework.context.annotation.Configuration
 public class HibernateUtil {
-	private static final SessionFactory sessionFactory = buildSessionFactory();
-	 
-    public static SessionFactory buildSessionFactory() 
-    {
-        try 
-        {
+
+    @Bean
+    public static SessionFactory getSessionFactory() {
+        try {
             return new Configuration().configure(new File("hibernate.cgf.xml")).buildSessionFactory();
         }
         catch (Throwable ex) {
@@ -23,12 +24,8 @@ public class HibernateUtil {
         }
     }
  
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
- 
     public static void shutdown() {
     	// Close caches and connection pools
-    	getSessionFactory().close();
+    	// getSessionFactory().close();
     }
 }
