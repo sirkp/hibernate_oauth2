@@ -17,7 +17,7 @@ public class HelloController {
 
     @GetMapping("/")
     public List<UserEntity>index() {
-        // userDao.save();
+        userDao.save();
         return userDao.getAll();
         // return "Greetings from Spring Boot";
     }

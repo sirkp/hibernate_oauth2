@@ -1,4 +1,4 @@
-package com.example.hibernate.hibernateConnection;
+package com.example.hibernate.configurations;
 
 import java.io.File;
 

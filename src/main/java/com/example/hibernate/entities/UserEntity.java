@@ -17,23 +17,36 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "USER", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "ID"),
-		@UniqueConstraint(columnNames = "EMAIL") })
+@Table(name = "users")
 public class UserEntity implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "EMAIL", unique = true, nullable = false, length = 100)
-	private String email;
+	@Column(name = "username", unique = true, nullable = false, length = 100)
+	private String userName;
+
+	@Column(name = "password", unique = false, nullable = false, length = 100)
+	private String password;
 	
-	@Column(name = "FIRST_NAME", unique = false, nullable = false, length = 100)
+	@Column(name = "first_name", unique = false, nullable = false, length = 100)
 	private String firstName;
 	
-	@Column(name = "LAST_NAME", unique = false, nullable = false, length = 100)
+	@Column(name = "last_name", unique = false, nullable = false, length = 100)
 	private String lastName;
+
+	@Column(name = "role", unique = false, nullable = false, length = 100)
+	private String role;
+
+	@Override
+	public String toString() {
+		return String.format("UserInfo [id=%s, userName=%s, password=%s, role=%s]"
+			, id, userName, password, role);
+	}
+
 
 }

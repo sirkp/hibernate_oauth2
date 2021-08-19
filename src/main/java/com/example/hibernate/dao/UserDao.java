@@ -2,8 +2,8 @@ package com.example.hibernate.dao;
 
 import java.util.List;
 
+import com.example.hibernate.configurations.HibernateUtil;
 import com.example.hibernate.entities.UserEntity;
-import com.example.hibernate.hibernateConnection.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,9 +20,11 @@ public class UserDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         UserEntity user = new UserEntity();
-		user.setEmail("pradeep@mail.com");
+		user.setUserName("pradeep@mail.com");
 		user.setFirstName("Pradeep");
 		user.setLastName("Rahul");
+        user.setPassword("password");
+        user.setRole("dummy");
 		session.save(user);
         session.getTransaction().commit();
         session.close();
