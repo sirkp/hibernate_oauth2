@@ -1,5 +1,6 @@
 package com.example.hibernate;
 
+import java.security.Principal;
 import java.util.List;
 
 import com.example.hibernate.dao.UserDao;
@@ -22,4 +23,11 @@ public class HelloController {
         return userDao.getAll();
         // return "Greetings from Spring Boot";
     }
+
+
+    @GetMapping("/sec")
+    public String securedEndpoint(Principal principal) {
+        return "Greetings from Secured Endpoint" + principal.getName();
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.hibernate.dao;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.hibernate.configurations.HibernateUtil;
 import com.example.hibernate.entities.UserEntity;
 
@@ -21,11 +22,12 @@ public class UserDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         UserEntity user = new UserEntity();
-		user.setUserName("pradeep@mail.com");
-		user.setFirstName("Pradeep");
-		user.setLastName("Rahul");
-        user.setPassword("password");
-        user.setRole("dummy");
+		user.setUserName("jack@mail.com");
+		user.setFirstName("jack");
+		user.setLastName("jack");
+        user.setPassword("jack");
+        user.setRole("ADMIN");
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		session.save(user);
         session.getTransaction().commit();
         session.close();
