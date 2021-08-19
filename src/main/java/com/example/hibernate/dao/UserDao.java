@@ -7,6 +7,7 @@ import com.example.hibernate.entities.UserEntity;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,15 @@ public class UserDao {
         session.getTransaction().commit();
         session.close();
         return users;
+    }
+
+    public UserEntity getUserByUserName(String username) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from UserEntity O where O.userName = :usernameParam");
+        query.setParameter("usernameParam", username);
+        UserEntity userEntity = (UserEntity) query.uniqueResult();
+        return userEntity;
     }
 
 }

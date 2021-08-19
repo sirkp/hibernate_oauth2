@@ -17,7 +17,8 @@ public class HelloController {
 
     @GetMapping("/")
     public List<UserEntity>index() {
-        userDao.save();
+        // userDao.save();
+        UserEntity entity = userDao.getUserByUserName("pradeep@mail.com");
         return userDao.getAll();
         // return "Greetings from Spring Boot";
     }
