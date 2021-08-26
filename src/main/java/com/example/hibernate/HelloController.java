@@ -17,17 +17,17 @@ public class HelloController {
     UserDao userDao;
 
     @GetMapping("/")
-    public List<UserEntity>index() {
-        // userDao.save();
-        UserEntity entity = userDao.getUserByUserName("pradeep@mail.com");
-        return userDao.getAll();
-        // return "Greetings from Spring Boot";
+    public String index(Principal principal) {
+        userDao.save();
+        // UserEntity entity = userDao.getUserByUserName("pradeep@mail.com");
+        // return userDao.getAll();
+        return "Greetings from Unsecured Endpoint";
     }
 
 
     @GetMapping("/sec")
     public String securedEndpoint(Principal principal) {
-        return "Greetings from Secured Endpoint" + principal.getName();
+        return "Greetings from Secured Endpoint " + principal.getName();
     }
 
 }

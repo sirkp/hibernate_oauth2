@@ -22,11 +22,11 @@ public class UserDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         UserEntity user = new UserEntity();
-		user.setUserName("jack@mail.com");
-		user.setFirstName("jack");
-		user.setLastName("jack");
-        user.setPassword("jack");
-        user.setRole("ADMIN");
+		user.setUserName("dummy1@mail.com");
+		user.setFirstName("dummy1");
+		user.setLastName("dummy1");
+        user.setPassword("password");
+        user.setRole("USER");
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		session.save(user);
         session.getTransaction().commit();
